@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test/screen/SignInWidget.dart';
+import 'package:test/services/auth_service.dart';
 
 class Signupwidget extends StatefulWidget {
   const Signupwidget({super.key});
@@ -178,7 +179,7 @@ void showSignUp(BuildContext context) {
                               r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$',
                             );
                             if (!passwordRegExp.hasMatch(value)) {
-                              return 'Password must be at least 8 characters long and contain both letters and numbers';
+                              return 'Password must 8 characters or longer with letters and numbers';
                             }
                             return null;
                           },
@@ -255,9 +256,12 @@ void showSignUp(BuildContext context) {
               width: MediaQuery.of(context).size.height * 0.40,
               height: MediaQuery.of(context).size.height * 0.06,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (formkey.currentState?.validate() ?? false) {
-                    print("Proccessing");
+                    await AuthService().signup(
+                        email: emailcontroller.text,
+                        password: passwordcontroller.text,
+                        context: context);
                   }
                 },
                 style: ButtonStyle(

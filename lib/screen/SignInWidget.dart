@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test/screen/SignUpWidget.dart';
+import 'package:test/services/auth_service.dart';
 
 class Signinwidget extends StatefulWidget {
   const Signinwidget({super.key});
@@ -209,7 +210,12 @@ void showSignIn(BuildContext context) {
               height: MediaQuery.of(context).size.height * 0.06,
               child: ElevatedButton(
                 onPressed: () async {
-                  if (formkey.currentState?.validate() ?? false) {}
+                  if (formkey.currentState?.validate() ?? false) {
+                    AuthService().signin(
+                        email: emailcontroller.text,
+                        password: passwordcontroller.text,
+                        context: context);
+                  }
                 },
                 style: ButtonStyle(
                   elevation: WidgetStateProperty.all(10),
