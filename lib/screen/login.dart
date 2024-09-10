@@ -23,7 +23,7 @@ class _loginState extends State<login> {
           colorFilter:
               ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
           child: Image.network(
-            "https://i.pinimg.com/originals/7b/39/18/7b391875a747ba004dde89e2cde75d2c.jpg",
+            "https://i.pinimg.com/originals/71/55/76/7155762bf654836daa3d7ebaa235a1d1.jpg",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
