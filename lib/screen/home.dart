@@ -57,10 +57,10 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Color.fromARGB(255, 255, 242, 212),
       ),
-      body: const Column(
+      body: Column(
         children: [
-          Padding(
-            //username textfield
+          const Padding(
+            // textfield
             padding: EdgeInsets.all(16.0),
             child: TextField(
               style: TextStyle(color: Color.fromARGB(255, 26, 50, 34)),
@@ -84,6 +84,61 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    height: 80,
+                    //color: const Color.fromARGB(255, 54, 244, 133),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ClipOval(
+                          child: SizedBox(
+                            height: 65,
+                            width: 65,
+                            child: Image.asset(
+                              "assets/image/vatey.JPG",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tey tey",
+                                style: GoogleFonts.quicksand(
+                                    color:
+                                        const Color.fromARGB(255, 26, 50, 34),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                "Hello",
+                                style: GoogleFonts.quicksand(
+                                    color:
+                                        const Color.fromARGB(255, 26, 50, 34),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
