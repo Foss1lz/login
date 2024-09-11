@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
                   Container(
                     padding: const EdgeInsets.only(left: 20),
                     height: 80,
-                    //color: const Color.fromARGB(255, 54, 244, 133),
+                    //color: const Color.fromARGB(255, 26, 50, 34),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -117,13 +117,14 @@ class _HomeState extends State<Home> {
                                 Text(
                                   "Tey tey",
                                   style: GoogleFonts.quicksand(
-                                      color:
-                                          const Color.fromARGB(255, 26, 50, 34),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600),
+                                    color:
+                                        const Color.fromARGB(255, 26, 50, 34),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
                                 Text(
-                                  "Hello",
+                                  "Heldddddddddddddddddddddddddddddddddddddddddddddlo",
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   style: GoogleFonts.quicksand(
@@ -137,16 +138,20 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Container(
+                          width: 50,
+                        ),
+                        Container(
                           padding: const EdgeInsets.only(
-                            top: 16,
+                            bottom: 28,
+                            right: 20,
                           ),
-                          color: Colors.amber,
                           child: Text(
                             "03:05AM",
                             overflow: TextOverflow.visible,
                             maxLines: 1,
                             style: GoogleFonts.quicksand(
-                              color: const Color.fromARGB(255, 26, 50, 34),
+                              fontWeight: FontWeight.w800,
+                              color: const Color.fromARGB(255, 61, 118, 80),
                             ),
                           ),
                         ),
