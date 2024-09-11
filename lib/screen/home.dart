@@ -97,8 +97,8 @@ class _HomeState extends State<Home> {
                       children: [
                         ClipOval(
                           child: SizedBox(
-                            height: 65,
-                            width: 65,
+                            height: 60,
+                            width: 60,
                             child: Image.asset(
                               "assets/image/vatey.JPG",
                               fit: BoxFit.cover,
@@ -108,28 +108,46 @@ class _HomeState extends State<Home> {
                         const SizedBox(
                           width: 10,
                         ),
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Tey tey",
+                                  style: GoogleFonts.quicksand(
+                                      color:
+                                          const Color.fromARGB(255, 26, 50, 34),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "Hello",
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: GoogleFonts.quicksand(
+                                      color:
+                                          const Color.fromARGB(255, 26, 50, 34),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         Container(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Tey tey",
-                                style: GoogleFonts.quicksand(
-                                    color:
-                                        const Color.fromARGB(255, 26, 50, 34),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                "Hello",
-                                style: GoogleFonts.quicksand(
-                                    color:
-                                        const Color.fromARGB(255, 26, 50, 34),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          padding: const EdgeInsets.only(
+                            top: 16,
+                          ),
+                          color: Colors.amber,
+                          child: Text(
+                            "03:05AM",
+                            overflow: TextOverflow.visible,
+                            maxLines: 1,
+                            style: GoogleFonts.quicksand(
+                              color: const Color.fromARGB(255, 26, 50, 34),
+                            ),
                           ),
                         ),
                       ],

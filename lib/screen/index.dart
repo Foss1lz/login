@@ -29,34 +29,40 @@ class _IndexstackState extends State<Indexstack> {
           Home(),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).size.height *
-              0.0, // Adjusts padding based on screen height
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
         ),
-        child: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 255, 242, 212),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              backgroundColor: Colors.amber,
-              icon: Icon(HugeIcons.strokeRoundedVideoReplay),
-              label: 'Stories',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(HugeIcons.strokeRoundedChatting01),
-              label: 'Chats',
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(HugeIcons.strokeRoundedSettings01),
-                label: "Setting"),
-          ],
-          currentIndex: _selectedIndex, // Set to state variable
-          onTap: _onItemTapped,
-          selectedItemColor: const Color.fromARGB(255, 26, 50, 34),
-          selectedLabelStyle:
-              GoogleFonts.quicksand(fontWeight: FontWeight.bold),
-          type: BottomNavigationBarType.fixed,
-          elevation: 20,
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height *
+                0.0, // Adjusts padding based on screen height
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: const Color.fromARGB(255, 255, 242, 212),
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                backgroundColor: Colors.amber,
+                icon: Icon(HugeIcons.strokeRoundedVideoReplay),
+                label: 'Stories',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(HugeIcons.strokeRoundedChatting01),
+                label: 'Chats',
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(HugeIcons.strokeRoundedSettings01),
+                  label: "Setting"),
+            ],
+            currentIndex: _selectedIndex, // Set to state variable
+            onTap: _onItemTapped,
+            selectedItemColor: const Color.fromARGB(255, 26, 50, 34),
+            selectedLabelStyle:
+                GoogleFonts.quicksand(fontWeight: FontWeight.bold),
+            type: BottomNavigationBarType.fixed,
+            elevation: 00,
+          ),
         ),
       ),
     );

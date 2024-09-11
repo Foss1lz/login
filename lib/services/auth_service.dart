@@ -47,6 +47,7 @@ class AuthService {
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => const Indexstack()));
