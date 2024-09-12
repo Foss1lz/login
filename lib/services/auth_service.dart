@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:test/screen/index.dart';
 import 'package:test/screen/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class Helper {
+  static Future<bool> getUserLoggedInSharedPreference() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isLoggedIn') ?? false; // Returns false if not set
+  }
+
+  static Future<void> setUserLoggedInSharedPreference(bool value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', value);
+  }
+}
 
 class AuthService {
   Future<void> signup(
@@ -46,6 +59,8 @@ class AuthService {
           .signInWithEmailAndPassword(email: email, password: password);
 
       await Future.delayed(const Duration(seconds: 1));
+      await Helper.setUserLoggedInSharedPreference(true);
+
       Navigator.pushReplacement(
           // ignore: use_build_context_synchronously
           context,
@@ -71,6 +86,7 @@ class AuthService {
 
   Future<void> signout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
+    await Helper.setUserLoggedInSharedPreference(false);
     await Future.delayed(const Duration(seconds: 1));
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) => const login()));

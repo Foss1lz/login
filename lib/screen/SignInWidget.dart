@@ -12,6 +12,11 @@ class Signinwidget extends StatefulWidget {
 
 class _SigninwidgetState extends State<Signinwidget> {
   // Define the variable here
+  void dispose() {
+    // Dispose controllers when the widget is disposed
+    SignInController.disposeControllers();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +34,18 @@ class _SigninwidgetState extends State<Signinwidget> {
   }
 }
 
+class SignInController {
+  static final email_Controller = TextEditingController();
+  static final password_Controller = TextEditingController();
+
+  static void disposeControllers() {}
+}
+
 void showSignIn(BuildContext context) {
   final formkey = GlobalKey<FormState>();
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+
   bool obsuretext = true;
   showModalBottomSheet(
     context: context,
@@ -215,6 +228,8 @@ void showSignIn(BuildContext context) {
                         email: emailcontroller.text,
                         password: passwordcontroller.text,
                         context: context);
+                    SignInController.email_Controller.text =
+                        emailcontroller.text;
                   }
                 },
                 style: ButtonStyle(

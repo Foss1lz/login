@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:test/screen/SignInWidget.dart';
+import 'package:test/services/auth_service.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,8 +13,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   double _opacity = 1.0;
+  void dispose() {
+    // Dispose controllers when the widget is disposed
+    SignInController.disposeControllers();
+    super.dispose();
+  }
 
-  void _onTapDown(TapDownDetails details) {
+  void onTapDown(TapDownDetails details) {
     setState(() {
       _opacity = 0.5; // Adjust the opacity to your desired faded level
     });
@@ -71,11 +78,23 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      drawer: const Drawer(
-        shape: RoundedRectangleBorder(
+      drawer: Drawer(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        backgroundColor: Color.fromARGB(255, 255, 242, 212),
+        backgroundColor: const Color.fromARGB(255, 255, 242, 212),
+        child: Expanded(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  AuthService().signout(context: context);
+                },
+                child: const Text("Signout")),
+          ],
+        )),
       ),
       body: Column(
         children: [
@@ -109,7 +128,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: <Widget>[
                   GestureDetector(
-                    onTapDown: _onTapDown,
+                    onTapDown: onTapDown,
                     onTapUp: _onTapUp,
                     onTapCancel: _onTapCancel,
                     onTap: () {
@@ -148,6 +167,8 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Text(
                                       "Tey tey",
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
                                       style: GoogleFonts.quicksand(
                                         color: const Color.fromARGB(
                                             255, 26, 50, 34),

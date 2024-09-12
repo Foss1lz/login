@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:test/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:test/screen/index.dart';
 import 'package:test/screen/login.dart';
+import 'package:test/services/auth_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  bool isLoggedIn = await Helper.getUserLoggedInSharedPreference();
+
+  runApp(MyApp(isLoggedIn: isLoggedIn));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+
+  MyApp({required this.isLoggedIn});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: login(),
+      home: isLoggedIn ? const Indexstack() : const login(),
     );
   }
 }
