@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test/screen/home.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:test/screen/setting.dart';
 
 class Indexstack extends StatefulWidget {
   const Indexstack({super.key});
@@ -27,6 +28,7 @@ class _IndexstackState extends State<Indexstack> {
         children: const [
           Home(),
           Home(),
+          Setting(),
         ],
       ),
       bottomNavigationBar: Theme(

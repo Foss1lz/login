@@ -10,6 +10,26 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  double _opacity = 1.0;
+
+  void _onTapDown(TapDownDetails details) {
+    setState(() {
+      _opacity = 0.5; // Adjust the opacity to your desired faded level
+    });
+  }
+
+  void _onTapUp(TapUpDetails details) {
+    setState(() {
+      _opacity = 1.0; // Reset opacity
+    });
+  }
+
+  void _onTapCancel() {
+    setState(() {
+      _opacity = 1.0; // Reset opacity if the tap is canceled
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,74 +108,88 @@ class _HomeState extends State<Home> {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.only(left: 20),
-                    height: 80,
-                    //color: const Color.fromARGB(255, 26, 50, 34),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ClipOval(
-                          child: SizedBox(
-                            height: 60,
-                            width: 60,
-                            child: Image.asset(
-                              "assets/image/vatey.JPG",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Tey tey",
-                                  style: GoogleFonts.quicksand(
-                                    color:
-                                        const Color.fromARGB(255, 26, 50, 34),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800,
-                                  ),
+                  GestureDetector(
+                    onTapDown: _onTapDown,
+                    onTapUp: _onTapUp,
+                    onTapCancel: _onTapCancel,
+                    onTap: () {
+                      print("tapped");
+                    },
+                    child: AnimatedOpacity(
+                      opacity: _opacity,
+                      duration: const Duration(
+                          milliseconds: 200), // Duration of the fade effect
+
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20),
+                        height: 80,
+                        color: Colors.transparent,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ClipOval(
+                              child: SizedBox(
+                                height: 60,
+                                width: 60,
+                                child: Image.asset(
+                                  "assets/image/vatey.JPG",
+                                  fit: BoxFit.cover,
                                 ),
-                                Text(
-                                  "Heldddddddddddddddddddddddddddddddddddddddddddddlo",
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: GoogleFonts.quicksand(
-                                      color:
-                                          const Color.fromARGB(255, 26, 50, 34),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.only(top: 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Tey tey",
+                                      style: GoogleFonts.quicksand(
+                                        color: const Color.fromARGB(
+                                            255, 26, 50, 34),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Heldddddddddddddddddddddddddddddddddddddddddddddlo",
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: GoogleFonts.quicksand(
+                                          color: const Color.fromARGB(
+                                              255, 26, 50, 34),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: 50,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(
-                            bottom: 28,
-                            right: 20,
-                          ),
-                          child: Text(
-                            "03:05AM",
-                            overflow: TextOverflow.visible,
-                            maxLines: 1,
-                            style: GoogleFonts.quicksand(
-                              fontWeight: FontWeight.w800,
-                              color: const Color.fromARGB(255, 61, 118, 80),
+                            Container(
+                              width: 50,
                             ),
-                          ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                bottom: 28,
+                                right: 20,
+                              ),
+                              child: Text(
+                                "03:05AM",
+                                overflow: TextOverflow.visible,
+                                maxLines: 1,
+                                style: GoogleFonts.quicksand(
+                                  fontWeight: FontWeight.w800,
+                                  color: const Color.fromARGB(255, 61, 118, 80),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
