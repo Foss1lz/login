@@ -13,12 +13,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   double _opacity = 1.0;
-  void dispose() {
-    // Dispose controllers when the widget is disposed
-    SignInController.disposeControllers();
-    super.dispose();
-  }
-
   void onTapDown(TapDownDetails details) {
     setState(() {
       _opacity = 0.5; // Adjust the opacity to your desired faded level
@@ -82,7 +76,7 @@ class _HomeState extends State<Home> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        backgroundColor: const Color.fromARGB(255, 255, 242, 212),
+        backgroundColor: const Color.fromARGB(255, 255, 179, 0),
         child: Expanded(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.end,

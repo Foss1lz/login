@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'SignInWidget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -10,7 +10,21 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
-  final formKey = GlobalKey<FormState>();
+  String? userEmail;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadEmail();
+  }
+
+  Future<void> _loadEmail() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userEmail = prefs.getString('user_email') ??
+          "No Email"; // Update the state with the fetched email
+    });
+  }
 
   double _opacity = 1.0;
   void onTapDown(TapDownDetails details) {
@@ -92,8 +106,7 @@ class _SettingState extends State<Setting> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            SignInController.email_Controller.text
-                                .split('@')[0],
+                            "Tey tey",
                             style: GoogleFonts.quicksand(
                                 color: const Color.fromARGB(255, 26, 50, 34),
                                 fontSize: 30,
@@ -103,7 +116,7 @@ class _SettingState extends State<Setting> {
                             height: 10,
                           ),
                           Text(
-                            SignInController.email_Controller.text,
+                            userEmail?.split('@')[0] ?? "Loading...",
                             style: GoogleFonts.quicksand(
                                 color: const Color.fromARGB(255, 26, 50, 34),
                                 fontSize: 15,
