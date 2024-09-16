@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:test/screen/SignInWidget.dart';
 import 'package:test/services/auth_service.dart';
 
 class Home extends StatefulWidget {

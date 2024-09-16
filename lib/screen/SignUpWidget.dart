@@ -261,6 +261,7 @@ void showSignUp(BuildContext context) {
                     await AuthService().signup(
                         email: emailcontroller.text,
                         password: passwordcontroller.text,
+                        name: passwordcontroller.text,
                         context: context);
                   }
                 },

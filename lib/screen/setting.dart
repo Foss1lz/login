@@ -11,19 +11,28 @@ class Setting extends StatefulWidget {
 
 class _SettingState extends State<Setting> {
   String? userEmail;
+  String? userName;
 
   @override
   void initState() {
     super.initState();
-    _loadEmail();
+    _userDetail();
   }
 
-  Future<void> _loadEmail() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      userEmail = prefs.getString('user_email') ??
-          "No Email"; // Update the state with the fetched email
-    });
+  Future<void> _userDetail() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+        userEmail = prefs.getString('user_email') ?? "No Email";
+        userName = prefs.getString('user_name') ?? "No Name";
+      });
+    } catch (e) {
+      // Handle errors or show an error message
+      print("Error loading email: $e");
+      setState(() {
+        userEmail = "Error loading";
+      });
+    }
   }
 
   double _opacity = 1.0;
@@ -50,7 +59,7 @@ class _SettingState extends State<Setting> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 242, 212),
       appBar: AppBar(
-        leading: null,
+        leading: Text(''),
         title: Text(
           "Setting",
           style: GoogleFonts.quicksand(
@@ -106,7 +115,7 @@ class _SettingState extends State<Setting> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Tey tey",
+                            userName.toString(),
                             style: GoogleFonts.quicksand(
                                 color: const Color.fromARGB(255, 26, 50, 34),
                                 fontSize: 30,
