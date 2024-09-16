@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -10,30 +13,7 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
-  String? userEmail;
-  String? userName;
-
-  @override
-  void initState() {
-    super.initState();
-    _userDetail();
-  }
-
-  Future<void> _userDetail() async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      setState(() {
-        userEmail = prefs.getString('user_email') ?? "No Email";
-        userName = prefs.getString('user_name') ?? "No Name";
-      });
-    } catch (e) {
-      // Handle errors or show an error message
-      print("Error loading email: $e");
-      setState(() {
-        userEmail = "Error loading";
-      });
-    }
-  }
+  String userName = FirebaseDatabase.instance.ref().child('user') as String;
 
   double _opacity = 1.0;
   void onTapDown(TapDownDetails details) {
