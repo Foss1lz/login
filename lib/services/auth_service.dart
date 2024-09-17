@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Helper {
   static const String isLoggedInKey = 'isLoggedIn';
   static const String userEmailKey = 'user_email';
+  static const String userNameKey = 'user_name';
 
   static Future<bool> getUserLoggedInSharedPreference() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -24,6 +25,11 @@ class Helper {
   static Future<void> setUserEmailSharedPreference(String email) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(userEmailKey, email);
+  }
+
+  static Future<void> setUserNameSharedPreference(String name) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(userNameKey, name);
   }
 }
 
@@ -44,6 +50,7 @@ class AuthService {
       await Helper.setUserEmailSharedPreference(email);
       await _updateUserProfile(name);
       await _saveUserDetails(name, email);
+      await Helper.setUserNameSharedPreference(name);
 
       Navigator.pushReplacement(
         context,
@@ -65,6 +72,7 @@ class AuthService {
     try {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
+        // ignore: deprecated_member_use
         await user.updateProfile(displayName: name);
         await user.reload();
         user = FirebaseAuth.instance.currentUser; // Refresh user data
@@ -134,7 +142,7 @@ class AuthService {
     } catch (e) {
       _showToast('Error signing out. Please try again.');
     }
-    Future<void> _saveUserDetails(String username) async {
+    Future<void> saveUserDetails(String username) async {
       try {
         User? user = FirebaseAuth.instance.currentUser;
         if (user != null) {

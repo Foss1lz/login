@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:test/services/userList.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -13,7 +11,21 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
-  String userName = FirebaseDatabase.instance.ref().child('user') as String;
+  // String? name;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _loadEmail();
+  // }
+
+  // Future<void> _loadEmail() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     name = prefs.getString('user_name') ??
+  //         "No Email"; // Update the state with the fetched email
+  //   });
+  // }
+  Dta? userData;
 
   double _opacity = 1.0;
   void onTapDown(TapDownDetails details) {
@@ -56,7 +68,12 @@ class _SettingState extends State<Setting> {
             onTapUp: _onTapUp,
             onTapCancel: _onTapCancel,
             onTap: () {
-              print("Tapped");
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => UserList(),
+                ),
+              );
             },
             child: AnimatedOpacity(
               opacity: _opacity,
@@ -95,7 +112,7 @@ class _SettingState extends State<Setting> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            userName.toString(),
+                            userData?.name ?? "Loading...",
                             style: GoogleFonts.quicksand(
                                 color: const Color.fromARGB(255, 26, 50, 34),
                                 fontSize: 30,
@@ -105,7 +122,7 @@ class _SettingState extends State<Setting> {
                             height: 10,
                           ),
                           Text(
-                            userEmail?.split('@')[0] ?? "Loading...",
+                            "HI",
                             style: GoogleFonts.quicksand(
                                 color: const Color.fromARGB(255, 26, 50, 34),
                                 fontSize: 15,
@@ -123,4 +140,9 @@ class _SettingState extends State<Setting> {
       ),
     );
   }
+}
+
+class Dta {
+  final String name;
+  Dta({required this.name});
 }

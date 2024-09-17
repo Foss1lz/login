@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:test/screen/index.dart';
 import 'package:test/screen/login.dart';
+import 'package:test/services/userList.dart';
 import 'package:test/services/auth_service.dart';
 
 void main() async {
@@ -22,9 +22,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isLoggedIn ? const Indexstack() : const login(),
+      //  home: isLoggedIn ? const Indexstack() : const login(),
+      home: login(),
     );
   }
 }
