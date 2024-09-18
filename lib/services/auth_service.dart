@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:test/screen/index.dart';
 import 'package:test/screen/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test/services/firestore_service.dart';
+import 'package:test/services/userList.dart';
 
 class Helper {
   static const String isLoggedInKey = 'isLoggedIn';
@@ -29,7 +31,7 @@ class Helper {
 
   static Future<void> setUserNameSharedPreference(String name) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(userNameKey, name);
+    await prefs.setString(userNameKey, globalName ?? "error");
   }
 }
 
@@ -112,6 +114,7 @@ class AuthService {
 
       await Helper.setUserLoggedInSharedPreference(true);
       await Helper.setUserEmailSharedPreference(email);
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

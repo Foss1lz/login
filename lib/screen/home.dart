@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:test/services/auth_service.dart';
+import 'package:test/services/userList.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -83,6 +84,7 @@ class _HomeState extends State<Home> {
           children: [
             ElevatedButton(
                 onPressed: () {
+                  //   globalName = null;
                   AuthService().signout(context: context);
                 },
                 child: const Text("Signout")),
